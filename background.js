@@ -52,9 +52,11 @@ function findDate(data, dateObject) {
 
 function updateIcon(color) {
     chrome.action.setIcon({ path: `icon-${color}.png` });
-  }
+}
 
-(function () {
-    const data = findDate(getConvertedData(), tomorrowsDateObject)
-    updateIcon(data.type)
-})()
+chrome.runtime.onStartup.addListener(function () {
+    const data = findDate(getConvertedData(), tomorrowsDateObject);
+    if (data) {
+        updateIcon(data.type);
+    }
+});
