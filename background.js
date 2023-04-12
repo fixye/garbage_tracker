@@ -50,10 +50,21 @@ function findDate(data, dateObject) {
     })[0]
 }
 
+
+/**
+ * Function updates the extensions color depending on type of object that 
+ * findDate() function finds.
+ *  * @param {string} color 
+ */
 function updateIcon(color) {
     chrome.action.setIcon({ path: `icon-${color}.png` });
 }
 
+
+/**
+ * Shorthand function to execute the code to avoid repetition while adding
+ * execution to different Chrome API actions.
+ */
 function run() {
     const data = findDate(getConvertedData(), tomorrowsDateObject);
     if (data) {
