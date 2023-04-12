@@ -72,6 +72,6 @@ function run() {
     }
 }
 
-chrome.runtime.onStartup.addListener(run());
-chrome.runtime.onInstalled.addListener(run());
-chrome.browserAction.onClicked.addListener(run());
+chrome.runtime.onStartup.addListener(run);
+chrome.runtime.onInstalled.addListener(run);
+chrome.browserAction.onClicked.addListener(run);
