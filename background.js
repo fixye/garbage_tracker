@@ -5,7 +5,7 @@ const tomorrowsDateObject = new Date(todaysDateObject)
 
 
 tomorrowsDateObject.setDate(todaysDateObject.getDate() + 1)
-// Setting milisecond to match input data
+// Setting time to match input data
 tomorrowsDateObject.setHours(0, 0, 0, 0)                        
 
 // Date correction if it is the last day of the month / last month of the year.
