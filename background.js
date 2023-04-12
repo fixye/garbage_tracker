@@ -39,7 +39,7 @@ function getConvertedData() {
  * Returns the resulting object.
  * 
  * @param {array} data Expects array of objects with "date" key in ISO format.
- * @param {*} dateObject expects an instance of Date()
+ * @param {object} dateObject expects an instance of Date()
  * @returns object or undefined
  */
 
