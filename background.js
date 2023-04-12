@@ -1,36 +1,35 @@
-import { data } from "./data.js"
+import { data } from "./data.js";
 
-const todaysDateObject = new Date()
-const tomorrowsDateObject = new Date(todaysDateObject)
+const todaysDateObject = new Date();
+const tomorrowsDateObject = new Date(todaysDateObject);
 
-
-tomorrowsDateObject.setDate(todaysDateObject.getDate() + 1)
-// Setting time to match input data
-tomorrowsDateObject.setHours(0, 0, 0, 0)                        
+tomorrowsDateObject.setDate(todaysDateObject.getDate() + 1);
+// Setting milisecond to match input data
+tomorrowsDateObject.setHours(0, 0, 0, 0);
 
 // Date correction if it is the last day of the month / last month of the year.
 if (tomorrowsDateObject.getDate() === 1) {
-    tomorrowsDateObject.setMonth(todaysDateObject.getMonth() + 1)
-    if (tomorrowsDateObject.getMonth() === 0 ) {
-        tomorrowsDateObject.setFullYear(todaysDateObject.getFullYear() + 1)
+    tomorrowsDateObject.setMonth(todaysDateObject.getMonth() + 1);
+    if (tomorrowsDateObject.getMonth() === 0) {
+        tomorrowsDateObject.setFullYear(todaysDateObject.getFullYear() + 1);
     }
 }
 
 /**
  *  Converts input data into ISO Date Format
- */ 
+ */
 
 function getConvertedData() {
-    const convertedArray = []
-    data.forEach(record => {
-        const dateArray = record.date.split('-')
+    const convertedArray = [];
+    data.forEach((record) => {
+        const dateArray = record.date.split("-");
         convertedArray.push({
-            date : `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`,
-            type : record.type
-        })
-    }) 
+            date: `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`,
+            type: record.type,
+        });
+    });
 
-    return convertedArray
+    return convertedArray;
 }
 
 /**
@@ -44,22 +43,20 @@ function getConvertedData() {
  */
 
 function findDate(data, dateObject) {
-    return data.filter(record  => {
+    return data.filter((record) => {
         if (new Date(record.date).getTime() === dateObject.getTime())
-            return record
-    })[0]
+            return record;
+    })[0];
 }
 
-
 /**
- * Function updates the extensions color depending on type of object that 
+ * Function updates the extensions color depending on type of object that
  * findDate() function finds.
- *  * @param {string} color 
+ *  * @param {string} color
  */
 function updateIcon(color) {
     chrome.action.setIcon({ path: `icon-${color}.png` });
 }
-
 
 /**
  * Shorthand function to execute the code to avoid repetition while adding
@@ -72,6 +69,8 @@ function run() {
     }
 }
 
+// Execution blocks
+
 chrome.runtime.onStartup.addListener(run);
 chrome.runtime.onInstalled.addListener(run);
-chrome.browserAction.onClicked.addListener(run);
+chrome.action.onClicked.addListener(run);
