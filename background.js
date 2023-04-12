@@ -54,9 +54,13 @@ function updateIcon(color) {
     chrome.action.setIcon({ path: `icon-${color}.png` });
 }
 
-chrome.runtime.onStartup.addListener(function () {
+function run() {
     const data = findDate(getConvertedData(), tomorrowsDateObject);
     if (data) {
         updateIcon(data.type);
     }
-});
+}
+
+chrome.runtime.onStartup.addListener(run());
+chrome.runtime.onInstalled.addListener(run());
+chrome.browserAction.onClicked.addListener(run());
